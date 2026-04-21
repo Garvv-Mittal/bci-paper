@@ -20,7 +20,7 @@ A Brain-Computer Interface (BCI) is a communication pathway between the brain an
 ## 📁 Repository Structure
 
 ```
-neurogenomics-research-lab/
+bci-paper/
 │
 ├── README.md
 ├── datasets/
