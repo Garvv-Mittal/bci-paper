@@ -37,8 +37,8 @@ neurogenomics-research-lab/
 
 ### Clone Repository
 ```
-git clone https://github.com/Anand-Ambastha/neurogenomics-research-lab.git
-cd neurogenomics-research-lab
+git clone https://github.com/Garvv-Mittal/bci-paper.git
+cd bci-paper
 ```
 
 ### Create Virtual Environment
