@@ -1,0 +1,45 @@
+
+## 1. Filtering Fundamentals
+Filtering removes or attenuates frequency-specific artifacts. By defining a cutoff value, we can weaken signals that do not belong to our frequency of interest.
+
+### Removing Slow Drifts
+Slow drifts are ultra-low frequency baseline shifts caused by skin conditions (e.g., sweating) or the external environment.
+* **Detection:** Use the `.plot()` method with a long time window (e.g., 60 seconds) to visualize these gradual changes.
+* **Calculation:** From the plot, analyze the time period ($T$). Since $f = 1/T$, we can find the drift frequency (e.g., 0.05 Hz).
+* **Execution:** Apply a **High-Pass Filter**. It is recommended to test cutoffs like 0.1 Hz and 0.2 Hz to find which removes the drift with the least damage to the underlying data.
+* **Technical Check:** Use `raw.filter()` and `create.filter()` to inspect the filter parameters and ensure technical accuracy.
+
+### Power Line Noise & Harmonics
+Electrical systems (AC supply) introduce noise, typically at **50 Hz** in India.
+* **Visualization:** Power lines appear as messy oscillations. Use a **Power Spectral Density (PSD)** plot (Power vs. Frequency) rather than a raw time plot to identify these spikes.
+* **Harmonics:** Look for spikes at multiples of the base frequency (100 Hz, 150 Hz, etc.).
+* **Vulnerability:** MEG channels are more susceptible to this interference than EEG recorded in magnetically shielded rooms.
+
+### The Notch Filter
+A Notch filter is ideal for power line noise because it targets specific frequencies without affecting the rest of the spectrum.
+* **Standard Notch:** Explicitly cuts out the target frequency.
+* **Spectrum_fit:** A method that models and subtracts sinusoidal noise.
+* **Workflow:** Use a `for` loop to compare "before" and "after" plots to ensure the filter parameters are tuned correctly.
+
+## 2. Resampling & Aliasing
+Resampling (specifically downsampling) reduces the data points per second to save computational resources.
+
+### Aliasing Risks
+If high-frequency signals are not removed before downsampling, they can "fold back" into lower frequencies, creating "fake signals."
+* **Example:** A 150 Hz signal sampled at 200 Hz can be misinterpreted as a much lower frequency.
+* **The Solution:** Always apply a **Low-Pass Filter** before downsampling.
+* **Nyquist Frequency:** The sampling rate must be at least twice the highest frequency present ($f_s \ge 2f$). MNE’s `raw.resample()` automatically handles this by applying a low-pass filter at the Nyquist frequency.
+
+### Methods
+* **FFT (Fast Fourier Transform):** Converts the signal to the frequency domain to resize the spectrum. It assumes signals are periodic and looks at the entire wave at once.
+* **Polyphase:** A time-domain method that adds samples to increase the rate temporarily, filters, and then removes samples.
+* **Welch PSD:** Use the `n_fft` parameter to determine the accuracy and resolution of your frequency estimates.
+
+## 3. Best Practices for Workflow
+The order of operations matters to prevent data distortion:
+
+1. **Resample before epoching:** Leads to timing errors (jitter).
+2. **Resample after epoching:** Creates edge artifacts in every epoch.
+
+**The Golden Rule:**
+> **Filter Raw Data $\rightarrow$ Epoch $\rightarrow$ Downsample** (Avoid resampling the raw object if you plan to epoch).
