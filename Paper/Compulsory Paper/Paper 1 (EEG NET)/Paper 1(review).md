@@ -1,4 +1,4 @@
-# 📄 Paper Review: EEGNet — A Compact Convolutional Neural Network for EEG-Based BCIs
+## EEGNet: A Compact Convolutional Neural Network for EEG-Based BCIs
 
 ---
 
@@ -17,7 +17,9 @@
 
 ## Problem Addressed
 
-Deep learning had already started making a real impact in EEG-based Brain–Computer Interfaces (BCIs). However, there was a major limitation: most models were built with a single task in mind. A network developed for a P300 speller, for example, could not simply be applied to a motor imagery task.Then there comes EEG data highly variable,noisey and non stationary.Because of these limitations, training large and complex deep learning models were difficult hence modal performs well on training data but struggles to generalize to new recodings therefore,it has to be designed by scratch. 
+Deep learning had already started making a real impact in EEG-based Brain–Computer Interfaces (BCIs). However, there was a major limitation in most of the models were built with a single task in mind. A network developed for a P300 speller, for example, could not simply be applied to a motor imagery task.Then there comes EEG data highly variable,noisey and non stationary.Because of these limitations, training large and complex deep learning models were difficult hence modal performs well on training data but struggles to generalize to new recodings therefore,it has to be designed by scratch.
+
+The question is can we build a single, small, general-purpose CNN that works reliably across multiple BCI paradigms especially when training data is limited or small??
 
 ---
 
@@ -64,11 +66,11 @@ Evaluated across **four BCI paradigms** using multiple public datasets:
 
 ## Limitations
 
-- EEG signals can change significantly from one recording session to another, even for the same person, due to factors such as electrode placement, fatigue, mood, or environmental conditions but it does not include a dedicated mechanism to adapt to these session-to-session changes.Hence,**Cross-session non-stationarity not directly solved**:
-- For cross-subject setups EEGNet performs good copared to other CNNs but doesn't significantly beat FBCSP. The architecture alone doesn't bridge inter-subject variability.Therefore **Cross-subject gap remains**
-- Parameters like temporal filter length, dropout rate,depth multiplier need adjustment per dataset so **dataset-specific tuning needed**
+- EEG signals can change significantly from one recording session to another, even for the same person, due to factors such as electrode placement, fatigue, mood, or environmental conditions but it does not include a dedicated mechanism to adapt to these session-to-session changes.Hence,**Cross-session non-stationarity not directly solved**.
+- For cross-subject setups EEGNet performs good copared to other CNNs but doesn't significantly beat FBCSP. The architecture alone doesn't bridge inter-subject variability.Therefore **Cross-subject gap remains**.
+- Parameters like temporal filter length, dropout rate,depth multiplier need adjustment per dataset so **dataset-specific tuning needed**.
 - The architecture is based on local convolutions and can't explicitly model long-range temporal data.
-- The extreme compactness is a double-edged sword when complex works comes in it can hit the ceiling really fast.Hence **Unfit for complex tasks**
+- The extreme compactness is a double-edged sword when complex works comes in it can hit the ceiling really fast.Hence **Unfit for complex tasks**.
 
 ---
 
@@ -76,7 +78,7 @@ Evaluated across **four BCI paradigms** using multiple public datasets:
 
 - For future scope we must combine EEGNet's lightweight and efficient architecture with domain adaptation techniques such as adversarial learning or transfer learning.By including domain adaptation methods, the model could learn to make its feature representations more consistent across these variations, reducing the need for frequent recalibration.
 - By adding channel-wise or temporal self-attention layers, the network could learn to automatically focus on the most informative EEG channels and time periods while giving less importance to noisy signals.
-- By using EEGNet as the foundation for large-scale EEG pre-training instead of training a model from scratch for every new task, EEGNet's efficient spatial and temporal feature extraction layers could serve as an encoder that is first trained on massive datasets collected from many subjects and experiments
+- By using EEGNet as the foundation for large-scale EEG pre-training instead of training a model from scratch for every new task, EEGNet's efficient spatial and temporal feature extraction layers could serve as an encoder that is first trained on massive datasets collected from many subjects and experiments.
 
 
 ---
@@ -87,10 +89,10 @@ EEGNet is **directly foundational** to our project for several reasons:
 
 | Aspect | Why it matters |
 |--------|---------------|
-| **Compact backbone** | EEGNet is parameter efficient design is the go-to starting point for any generalizable EEG model this makes it far less prone to overfitting than many larger DL models especially when datasets are small |
+| **Compact backbone** | EEGNet is parameter efficient design is the go-to starting point for any generalizable EEG model this makes it far less prone to overfitting than many larger DL models especially when datasets are small. |
 | **Cross-paradigm generalization** | EEGNet demonstrated that a single, unified architecture can perform effectively across a variety of BCI tasks.Which supports the idea of moving away from task-specific models. |
 | **Cross-subject baseline** | EEGNet is the standard baseline in cross-subject MI-EEG literature. Our framework needs to be compared against it (and should clearly beat it on the non-stationarity front). |
-| **Known gap to exploit** | EEGNet does NOT include domain adaptation it generalizes architecture. This is the exact gap we must target by including techniques that improves robustness to session to session or subject to subject variability on top of EEG backbone |
+| **Known gap to exploit** | EEGNet does NOT include domain adaptation it generalizes architecture. This is the exact gap we must target by including techniques that improves robustness to session to session or subject to subject variability on top of EEG backbone. |
 
 ---
 
