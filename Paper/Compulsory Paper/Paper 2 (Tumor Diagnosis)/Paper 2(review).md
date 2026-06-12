@@ -2,7 +2,7 @@
 
 ---
 
-## Metadata
+## PAPER INFO
 
 | Field | Details |
 |-------|---------|
@@ -21,9 +21,9 @@ Automated Breast Ultrasound (ABUS) is a newer imaging technique that scans the w
 
 Three things make automatic detection especially hard here:
 
-- **Image quality is rough** — ultrasound is noisier than MRI or CT, so lesion boundaries are blurry and hard to label.
-- **Tumors are tiny** — lesion regions are often less than 1% of the total scan volume. Class imbalance is severe.
-- **Benign and malignant tumors look very similar** — just detecting a lump isn't enough you need to classify it too, and the visual differences are subtle.
+- **Image quality is rough** - ultrasound is noisier than MRI or CT, so lesion boundaries are blurry and hard to label.
+- **Tumors are tiny** - lesion regions are often less than 1% of the total scan volume. Class imbalance is severe.
+- **Benign and malignant tumors look very similar** - just detecting a lump isn't enough you need to classify it too, and the visual differences are subtle.
 
 Most previous methods used segmentation networks (like U-Net) which are computationally heavy and need pixel-level labels.
 
@@ -33,12 +33,12 @@ Most previous methods used segmentation networks (like U-Net) which are computat
 
 The framework is a clean **two-stage pipeline**:
 
-### Stage 1 — 3D Region Proposal Network (3D RPN)
+### Stage 1 3D Region Proposal Network (3D RPN)
 - A **3D ResNet backbone** (5 residual blocks) extracts volumetric feature maps from the ABUS scan.
 - A **3D RPN** scans these features and proposes candidate lesion bounding boxes. It uses **125 anchor shapes** across 5 size scales (8, 16, 28, 40, 55 voxels) to handle the wide range of tumor sizes.
 - Two branches run in parallel inside the RPN: one predicts bounding box coordinates (regression), the other predicts if the box contains a lesion or background (classification).
 
-### Stage 2 — Classification Network
+### Stage 2 Classification Network
 - Candidate regions from Stage 1 are passed to a separate classification network that decides **benign or malignant?**
 - This seperates detection from diagnosis keeping each task focused.
 
@@ -52,9 +52,9 @@ Inspired by contrastive learning: it pulls feature vectors from the same class c
 
 ---
 
-## Key Results / Findings
+## Key Results 
 
-Dataset: **418 patients** from a Chinese hospital — 145 benign tumors, 273 malignant.
+Dataset: **418 patients** from a Chinese hospital 145 benign tumors, 273 malignant.
 
 | Metric | Value |
 |--------|-------|
@@ -90,7 +90,7 @@ The detection-based approach (vs segmentation) enabled the model to process **fu
 ## Future Scope
 
 - **Multi-centre validation** -->Testing on scans from multiple hospitals and ABUS devices would immediately clarify how robust the model actually is.
-- **Domain adaptation across scanners** --> The inter-device distribution changes in ABUS is the imaging equivalent of inter-subject variability in EEG — methods like adversarial adaptation or normalization layers could address this.
+- **Domain adaptation across scanners** --> The inter-device distribution changes in ABUS is the imaging equivalent of inter-subject variability in EEG methods like adversarial adaptation or normalization layers could address this.
 - **Semi-supervised / weakly supervised learning** --> Getting pixel-level labels for 800-frame 3D scans is expensive. Using image-level or bounding-box-level weak labels could be used to get larger datasets.
 - **Transformer backbones** --> Replacing the ResNet with a 3D Swin Transformer or similar architecture could better capture long-range spatial relationships across slices.
 
