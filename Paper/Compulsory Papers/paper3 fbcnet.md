@@ -23,13 +23,13 @@ They propose FBCNet to:
 
 ## Methodology
 - FBCNet is designed specifically for Motor Imagery EEG Classification
-Step 1: Multi-view data representation:
+- Step 1: Multi-view data representation:
     - EEG signals contain information at different frequencies.
     - Motor imagery information is mainly present in the Mu and Beta bands.
     - The authors therefore separate the EEG into multiple frequency bands before giving it to the CNN.
     - The EEG is passed through 9 bandpass filters, each filter extracts only its own frequency range.
     - The paper calls this a multi-view representation.
-Step 2: Spatial Localization (Spatial Convolution Block)
+-  2: Spatial Localization (Spatial Convolution Block)
     - authors use depthwise  convolution to find which electrodes are useful
     - Depthwise convolution processes each frequency band independently.
     - each frequency band gets its own spatial filter 
@@ -39,7 +39,7 @@ Step 2: Spatial Localization (Spatial Convolution Block)
     - No matter how many layers you stack, the network would behave like a single linear model.
     - here we use swish activation
     - Weight Normalization: ∣∣w∣∣<2 reduces overfitting 
-Step 3: Temporal Feature Extraction (Variance Layer)
+- Step 3: Temporal Feature Extraction (Variance Layer)
     - The time dimension is huge. Many of these values are: noisy, redundant, prone to overfitting
     -  to combat this, traditional methods use pooling 
     - but in motor imagery power is more informative
@@ -50,12 +50,12 @@ Step 3: Temporal Feature Extraction (Variance Layer)
     - Variance Layer naturally focuses learning on those deviations.
     - Window-Based Variance: Instead of computing one variance over the entire signal, they use windows of different time periods
     - Before variance: m × Nb × T and After variance: m × Nb × (T/w) --> Huge reduction in features.
-Step 4: Classification
+- Step 4: Classification
     - Log Activation : This compresses large power values.
     - Fully Connected Layer: Receives all extracted features and learns
     - Softmax: Converts outputs into probabilities
 
-Complete Flow:
+- Complete Flow:
 Raw EEG
 (C × T)
     ↓
