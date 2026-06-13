@@ -7,7 +7,7 @@
 | Field | Details |
 |-------|---------|
 | **Title** |FBCNet: A Multi-view Convolutional Neural Network for Brain-Computer Interface
-| **Authors** |Junxiong Yu , Chaoyu Chen , Xin Yang, Yi Wang, Dan Yan, Jianxing Zhang, and Dong Ni|
+| **Authors** |Ravikiran Mane Member, IEEE, Effie Chew, Karen Chua, Kai Keng Ang Senior Member, IEEE, Neethu Robinson Member, IEEE, A. P. Vinod Senior Member, IEEE, Seong-Whan Lee Fellow, IEEE, and Cuntai Guan Fellow, IEEE|
 
 ## Problems Addressed 
 
@@ -54,56 +54,35 @@ Step 4: Classification
     - Log Activation : This compresses large power values.
     - Fully Connected Layer: Receives all extracted features and learns
     - Softmax: Converts outputs into probabilities
+
 Complete Flow:
 Raw EEG
 (C × T)
-
-        ↓
-
+    ↓
 Filter Bank
 (9 frequency bands)
-
-        ↓
-
+    ↓
 Multi-view EEG
 (9 × C × T)
-
-        ↓
-
+    ↓
 Depthwise Spatial Convolution
 (learn spatial filters)
-
-        ↓
-
+    ↓
 BatchNorm + Swish
-
-        ↓
-
+    ↓
 Spectro-Spatial Features
-
-        ↓
-
+    ↓
 Variance Layer
 (extract EEG power)
-
-        ↓
-
+    ↓
 Feature Reduction
-
-        ↓
-
+    ↓
 Log Activation
-
-        ↓
-
+    ↓
 Fully Connected Layer
-
-        ↓
-
+    ↓
 Softmax
-
-        ↓
-
+    ↓
 Motor Imagery Class
  
 ## Results and Findings 
@@ -117,4 +96,4 @@ Motor Imagery Class
 - Optimal Number of Spatial Filters was found to be 32
 
 ## Relevance to project
-- sptial filtering, variance layer and filter bank representation lead to increased accuracy in cross session experimentation
+- spatial filtering, variance layer and filter bank representation lead to increased accuracy in cross session experimentation
