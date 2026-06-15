@@ -7,7 +7,6 @@
 | **Authors** |  Sabrina Narimene Benassou, Wuzhen Shi, Feng Jiang  |
 | **Year** | AUG 2020 |
 | **Journal** | Neurocomputing, Vol. 429 (2021), pp. 60–68 |
-| **DOI** | [10.1016/j.neucom.2020.11.038](https://doi.org/10.1016/j.neucom.2020.11.038) |
 
 
 ### Core Idea 
