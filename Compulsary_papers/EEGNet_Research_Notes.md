@@ -36,35 +36,27 @@ Developed by the U.S. Army Research Laboratory to create a single ultra-compact 
 # Block 1: Slicing Through Time & Space
 
 ### Step 1: Temporal Conv (1 x 64 kernel)
-* [cite_start]**What it does**: Slides exclusively along the time axis[cite: 148, 159]. 
-* [cite_start]**The Logic**: The kernel length is intentionally locked to exactly half of the data's sampling rate (for 128 Hz data, kernel size is 64)[cite: 141, 149]. [cite_start]This acts as a data-driven frequency sweep, natively capturing clean brain wave oscillations from 2 Hz and up (covering delta, theta, alpha, and beta bands) without manual bandpass filtering[cite: 162, 163].
-
+* **What it does**: Slides exclusively along the time axis. 
+* **The Logic**: The kernel length is intentionally locked to exactly half of the data's sampling rate (for 128 Hz data, kernel size is 64). This acts as a data-driven frequency sweep, natively capturing clean brain wave oscillations from 2 Hz and up (covering delta, theta, alpha, and beta bands) without manual bandpass filtering.
+- Operates only along time.
+- Kernel length = half sampling frequency.
+- Learns frequency-selective filters automatically.
+- 
 ### Step 2: Depthwise Conv (C x 1 kernel)
-* [cite_start]**What it does**: Applies a standalone spatial filter to each temporal feature map individually, completely avoiding cross-channel connections[cite: 159, 164, 165]. 
-* [cite_start]**The Logic**: This mathematically replaces the classic Filter-Bank Common Spatial Pattern (FBCSP) pipeline—except it learns the spatial weights dynamically from raw data *(sab kuch auto-tune hota hai)*[cite: 166, 168]. [cite_start]It isolates exactly which scalp electrodes matter most for a specific frequency band[cite: 159, 166]. [cite_start]A depth multiplier (D) controls the number of spatial filters learned per map[cite: 167].
+* **What it does**: Applies a standalone spatial filter to each temporal feature map individually, completely avoiding cross-channel connections. 
+* **The Logic**: This mathematically replaces the classic Filter-Bank Common Spatial Pattern (FBCSP) pipeline—except it learns the spatial weights dynamically from raw data *(sab kuch auto-tune hota hai)*. It isolates exactly which scalp electrodes matter most for a specific frequency band. A depth multiplier (D) controls the number of spatial filters learned per map.
+- Learns spatial filters across electrodes.
+- Functions as a trainable FBCSP replacement.
+- Depth multiplier D controls filters per temporal map.
+
 
 ---
 
 # Block 2: The Data Summarizer
 
 ### Step 3: Depthwise Separable Conv (1 x 16 kernel)
-* [cite_start]**What it does**: First, a light depthwise layer summarizes an individual feature map over a short time window (500 ms at 32 Hz pooling)[cite: 160, 180]. [cite_start]Then, a 1 x 1 pointwise convolution steps in to optimally blend the resulting maps together[cite: 160, 180]. 
-* [cite_start]**The Logic**: This decouples spatial profiling from temporal mixing, drastically slashing the parameter count[cite: 181, 182].
-### Block 1: Temporal + Spatial Feature Extraction
-
-#### Step 1: Temporal Convolution (1×64)
-- Operates only along time.
-- Kernel length = half sampling frequency.
-- Learns frequency-selective filters automatically.
-
-#### Step 2: Depthwise Spatial Convolution (C×1)
-- Learns spatial filters across electrodes.
-- Functions as a trainable FBCSP replacement.
-- Depth multiplier D controls filters per temporal map.
-
-### Block 2: Feature Summarization
-
-#### Step 3: Depthwise Separable Convolution
+* **What it does**: First, a light depthwise layer summarizes an individual feature map over a short time window (500 ms at 32 Hz pooling). Then, a 1 x 1 pointwise convolution steps in to optimally blend the resulting maps together. 
+* **The Logic**: This decouples spatial profiling from temporal mixing, drastically slashing the parameter count.
 - Depthwise convolution summarizes individual feature maps.
 - Pointwise (1×1) convolution combines feature maps.
 - Greatly reduces parameter count.
