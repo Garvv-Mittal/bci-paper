@@ -1,3 +1,6 @@
+## Entropy Guided Adversarial Model for Weakly Supervised Object Localization##
+Sabrina Narimene Benassoua, Wuzhen Shib, Feng Jianga
+
 # Problem Addressed
 - Weakly Supervised Object Localization (WSOL) is a computer vision task where a model must identify the location of an object in an image using only image-level labels during training, without being given the object's bounding box.
 - Without location annotations, the network must learn both classification and localization from limited supervision, often resulting in inaccurate object boundaries.
