@@ -1,4 +1,14 @@
 # EEGNet Research Notes
+## Paper Info
+
+| Field | Details |
+|-------|---------|
+| **Title** | EEGNet: A Compact Convolutional Neural Network for EEG-Based Brain–Computer Interfaces |
+| **Authors** | Vernon J. Lawhern, Amelia J. Solon, Nicholas R. Waytowich, Stephen M. Gordon, Chou P. Hung, Brent J. Lance |
+| **Year** | 2018 (first appeared Nov 2016 on arXiv; published Jul 2018) |
+| **Journal** | Journal of Neural Engineering (IOP Publishing) |
+| **Volume/Article** | Vol. 15, No. 5, Article 056013 |
+| **DOI** | [10.1088/1741-2552/aace8c](https://doi.org/10.1088/1741-2552/aace8c) |
 
 ## Core Idea
 Developed by the U.S. Army Research Laboratory to create a single ultra-compact CNN (~2,000 parameters) capable of classifying raw EEG signals across multiple BCI paradigms without extensive handcrafted feature engineering.
@@ -133,3 +143,6 @@ EEGNet proves that carefully designed neurophysiological inductive biases can ou
 
 Most promising direction:
 **EEGNet + Domain Adaptation**
+
+## Our Exact Subsystem: 
+We will take this ultra-compact EEGNet encoder backbone and layer domain adaptation or adversarial transfer learning techniques directly on top of it. This allows us to bridge the biological and temporal cross-subject gaps that this classic paper leaves completely wide open.
