@@ -1,8 +1,11 @@
 # Personal Notes: Entropy Guided Adversarial (EGA) Model for WSOL
 ## 📌 Paper Metadata
-* **Title:** Entropy Guided Adversarial Model for Weakly Supervised Object Localization 
-* **Authors:** Sabrina Narimene Benassou, Wuzhen Shi, Feng Jiang 
-* **Year:** Aug 2020 
+**Title:** Entropy Guided Adversarial Model for Weakly Supervised Object Localization 
+**Authors:** Sabrina Narimene Benassou, Wuzhen Shi, Feng Jiang 
+**DOI:** [10.1016/j.neucom.2020.11.038](https://doi.org/10.1016/j.neucom.2020.11.038)
+**Journal:** Neurocomputing, Vol. 429 (2021), pp. 60–68  
+
+
 
 ### Core Idea 
 * **The Goal:** Weakly Supervised Object Localization (WSOL) helps detect objects using only image-level labels instead of expensive bounding boxes.
