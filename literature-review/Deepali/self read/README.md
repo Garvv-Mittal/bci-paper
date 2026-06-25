@@ -1,1 +1,0 @@
-add self read papers

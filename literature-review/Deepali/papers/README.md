@@ -1,1 +1,0 @@
-compusory paper notes
