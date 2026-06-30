@@ -50,13 +50,13 @@ The core methodology of this paper focuses on removing subject-specific structur
 * **Spatial Convolution:** Maps relational activity across different spatial electrode positions on the scalp. It focuses specifically on primary sensorimotor nodes like $C_3$, $C_4$, and $C_z$ to capture lateralized activation patterns across hemispheres.
 
 ### Stage B: Multi-Scale Spectral Feature Fusion
-* **Spectral Splitting:** Because motor imagery patterns are inherently locked to specific biological rhythms, the model splits and extracts dual components simultaneously[cite: 1]:
+* **Spectral Splitting:** Because motor imagery patterns are inherently locked to specific biological rhythms, the model splits and extracts dual components simultaneously
   * **Mu Rhythms (8–12 Hz):** Associated with movement suppression, planning, and readiness.
   * **Beta Rhythms (13–30 Hz):** Associated with execution, continuous control, and post-movement resetting.
 * **Fusion Strategy:** Instead of treating bands as completely isolated entities, a multi-scale block actively merges these cross-frequency representations into a single high-dimensional feature vector, protecting nuanced relational cues from being discarded.
 
 ### Stage C: Domain Alignment via CORAL Loss & Distance Regularization
-To force the deep layers to drop subject identity and retain only intention, the training enforces a specialized loss profile[cite: 1]:
+To force the deep layers to drop subject identity and retain only intention, the training enforces a specialized loss profile
 * **Correlation Alignment (CORAL) Loss:** 
   * *Mathematical Setup:* Pairwise alignment of sub-source domains. It computes second-order statistics (covariance matrices) of features extracted from different training subjects.
   * *The Objective:* It minimizes the distance between these covariance matrices. Bending the feature space mathematically forces data points from different individuals to overlap if they share the same physical intention.
@@ -71,18 +71,18 @@ To force the deep layers to drop subject identity and retain only intention, the
 ## 3. Validation Framework & Empirical Benchmarks
 
 ### Leave-One-Subject-Out (LOSO) Validation
-To strictly ensure the framework can handle true out-of-the-box initialization without cheating, evaluation relies entirely on LOSO constraints[cite: 1]:
+To strictly ensure the framework can handle true out-of-the-box initialization without cheating, evaluation relies entirely on LOSO constraints :
 * Given a pool of $N$ available subjects, the training optimization utilizes data from $N-1$ subjects.
 * The remaining single subject is isolated entirely and acts as the hidden target domain.
 * The model must perform inference on this unseen target on its first iteration without taking any adaptation labels.
 
 ### Quantitative Performance Metrics
-The network was tested across two internationally recognized benchmarks, yielding consistent improvements over preceding state-of-the-art cross-subject models[cite: 1]:
+The network was tested across two internationally recognized benchmarks, yielding consistent improvements over preceding state-of-the-art cross-subject models :
 
 | Dataset | Complexity Profile | Performance Improvement |
 | :--- | :--- | :--- |
-| **BCI Competition IV 2a**[cite: 1] | **4-Class Paradigm** (Left Hand, Right Hand, Foot, Tongue)[cite: 1] | **+8.93% Absolute Accuracy Boost** over baselines[cite: 1] |
-| **Korea University Dataset**[cite: 1] | **2-Class Paradigm** (Left vs. Right Hand; large-scale test group)[cite: 1] | **+4.40% Absolute Accuracy Boost** (proving large-scale population viability)[cite: 1] |
+| **BCI Competition IV 2a**  | **4-Class Paradigm** (Left Hand, Right Hand, Foot, Tongue)  | **+8.93% Absolute Accuracy Boost** over baselines  |
+| **Korea University Dataset**  | **2-Class Paradigm** (Left vs. Right Hand; large-scale test group)  | **+4.40% Absolute Accuracy Boost** (proving large-scale population viability)  |
 
 ### Latent Space Behavior (t-SNE Diagnostics)
 * **Standard Frameworks:** In latent space, raw configurations group heavily by *Subject ID*. The model primarily separates vectors based on individual physical features because biological domain shift dominates the data stream.
