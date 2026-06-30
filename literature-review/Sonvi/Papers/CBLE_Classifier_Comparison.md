@@ -1,14 +1,14 @@
-**Summary :-***
+**Summary :-**
 
 This paper examines how variations in the timing of the P300 signal affect the accuracy of a Brain-Computer Interface (BCI). The authors extend their previous work on Classifier-Based Latency Estimation (CBLE) by evaluating its performance with three different classifiers: Least Squares (LS), Stepwise Linear Discriminant Analysis (SWLDA), and Sparse Autoencoders (SAE). Their experiments show that higher latency variation leads to lower classification accuracy. The results also demonstrate that CBLE can reliably estimate BCI performance across different classification techniques.
 
-**Research Problem :-***
+**Research Problem :-**
 
 In a P300-based BCI system, the P300 response does not occur at exactly the same time for every trial. Factors such as user attention, fatigue, cognitive state, and individual differences introduce latency variations, making it difficult for classifiers to detect the signal consistently. This ultimately reduces the overall accuracy of the BCI system.
 
 Earlier studies had validated CBLE mainly with linear classifiers. The main objective of this paper is to investigate whether the same latency estimation approach remains effective when a nonlinear classifier such as a Sparse Autoencoder is used.
 
-**Motivation :-***
+**Motivation :-**
 
 A reliable method for estimating latency variation can help researchers predict the expected performance of a BCI system before evaluating its final accuracy. Such predictions can improve system reliability, reduce unnecessary experimentation, and assist in selecting suitable classification techniques. For this reason, the authors investigate whether CBLE remains effective regardless of the classifier used.
 
