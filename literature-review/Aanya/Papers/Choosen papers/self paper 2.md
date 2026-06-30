@@ -42,58 +42,6 @@ The core methodology of this paper focuses on removing subject-specific structur
 └────────────────────────────────────────┘
 │
 ▼
-[ Decoded MI Intention Task Outputs ]
-```markdown
-# Technical Study Notes: Cross-Subject Motor Imagery EEG Decoding with Domain Generalization
-
-## 1. Problem Statement & Paradigm Shift
-* **The Clinical Context:** Motor Imagery (MI) Brain-Computer Interfaces (BCIs) record neural oscillations via EEG to translate imagined physical actions (e.g., left or right hand movement) into device commands, bypassing damaged physical pathways to assist stroke or paralysis patients.
-* **The Core Bottleneck:** Inter-subject variance (**Domain Shift**). Physiological and anatomical discrepancies—such as skull thickness, scalp geometry, and baseline resting neural states—severely alter the signal distribution between individuals.
-* **The Standard Solution (Domain Adaptation):** Collecting subject-specific calibration data from a new user to fine-tune pre-trained models. This introduces long, fatiguing initialization processes for the user.
-* **The Proposed Target (Domain Generalization):** Developing a true "plug-and-play" system via zero-shot transfer. The model leverages multiple source subject domains to extract strictly *domain-invariant features*, allowing it to decode a completely unseen target subject's intent without any calibration data.
-
----
-
-## 2. Complete Methodology Breakdown
-
-The core methodology of this paper focuses on removing subject-specific structural artifacts while preserving intentional neural patterns. This is achieved through a localized, 4-stage pipeline that operates over raw multi-channel data.
-
-
-```
-
-[Raw EEG Epoch Stream]
-│
-▼
-┌────────────────────────────────────────┐
-│ 1. Temporal-Spatial Feature Extraction │
-│    - Shallow/Deep CNN Layer Pipelines  │
-│    - Extracts Over-Time Rhythms (C3,C4,Cz)
-└────────────────────────────────────────┘
-│
-▼
-┌────────────────────────────────────────┐
-│ 2. Multi-Scale Spectral Feature Fusion │
-│    - Parallel Mu Band Filter (8-12 Hz) │
-│    - Parallel Beta Band Filter (13-30 Hz)
-└────────────────────────────────────────┘
-│
-▼
-┌────────────────────────────────────────┐
-│ 3. Joint Optimization & Alignment      │
-│    - Inter-Domain Pairwise CORAL Loss  │
-│    - Distance Regularization Penalties │
-└────────────────────────────────────────┘
-│
-▼
-┌────────────────────────────────────────┐
-│ 4. Self-Knowledge Distillation (SKD)   │
-│    - Internal Teacher-to-Student Sync  │
-│    - Probability Output Softening      │
-└────────────────────────────────────────┘
-│
-▼
-[ Decoded MI Intention Task Outputs ]
-
 
 
 ### Stage A: Spatial-Temporal Feature Encoding
