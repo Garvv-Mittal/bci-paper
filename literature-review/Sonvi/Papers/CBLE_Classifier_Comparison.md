@@ -1,4 +1,4 @@
-     # A Comparison of Classification Techniques to Predict Brain-Computer Interface Accuracy Using Classifier-Based Latency Estimation
+# A Comparison of Classification Techniques to Predict Brain-Computer Interface Accuracy Using Classifier-Based Latency Estimation
 
 ## 📄 Paper Information
 
