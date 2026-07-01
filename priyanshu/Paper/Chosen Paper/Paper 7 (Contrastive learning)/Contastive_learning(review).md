@@ -16,7 +16,9 @@
 
 ### The Problem
 Traditional BCI models are "picky." They work great if you train and test them on the same person in the same session, but as soon as you try to use a model trained on *Subject A* for *Subject B*, the accuracy tanks. This happens because EEG signals are non-stationary; things like electrode placement, hair thickness, and even a user’s mood change the signal distribution, making universal decoding a nightmare.
+
 ---
+
 ### Methodology 
 Instead of just telling the model "this is a left-hand movement," the authors use **Contrastive Learning**. The goal is to teach the model to recognize the *essence* of the signal, regardless of who it came from.
 
