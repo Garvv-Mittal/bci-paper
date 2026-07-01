@@ -86,7 +86,7 @@ The results indicate that individuals with stronger resting Sensorimotor Rhythms
 - Only SMR-based Motor Imagery BCIs were evaluated.
 
 
-## Research Gap
+## Research Gap :-
 
 Although the proposed SMR predictor successfully estimates BCI performance, several limitations remain.
 
@@ -96,7 +96,7 @@ Although the proposed SMR predictor successfully estimates BCI performance, seve
 - Real-time adaptive prediction methods were not investigated.
 
 
-## Questions / Open Points
+## Questions :-
 
 - Can deep learning models improve prediction accuracy beyond the proposed SMR predictor?
 - Would similar predictors work for P300 or SSVEP-based BCIs?
