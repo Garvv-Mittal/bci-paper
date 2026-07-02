@@ -10,7 +10,7 @@
 | Name | GitHub |
 |------|--------|
 | Garv Mittal | [@Garvv-Mittal](https://github.com/Garvv-Mittal) |
-| Virti Miglani | *(add GitHub handle)* |
+| Vriti Miglani | [@vritimiglani06-spec](https://github.com/vritimiglani06-spec) |
 
 ### Members
 | Name | Folder |
